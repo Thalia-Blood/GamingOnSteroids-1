@@ -1,6 +1,6 @@
 require('Inspired')
 
-Config = scriptConfig("Twitch by Outbreak", "Twitch.lua")
+Config = scriptConfig("Twitch", "Twitch by Outbreak")
 Config.addParam("W", "Use W", SCRIPT_PARAM_ONOFF, true)
 Config.addParam("E", "Use E to finish target", SCRIPT_PARAM_ONOFF, true)
 Config.addParam("E2", "Use E at 6 stacks", SCRIPT_PARAM_ONOFF, false)
