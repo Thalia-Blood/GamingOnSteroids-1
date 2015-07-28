@@ -35,15 +35,16 @@ OnLoop(function(myHero)
 		if Config.E and ValidTarget(target, 1200)then
 		
 			local Elevel = GetCastLevel(myHero,_E)
-			local TDmg = GetBonusDmg(myHero)+GetBaseDamage(myHero)
-			local stacks = GotBuff(target,"twitchdeadlyvenom")	
+			local TDmg = GetBonusDmg(myHero)+GetBaseDamage(myHero)			
 			
-		    local stackDamage = (stacks * 5) + 10 + (0.2 * stacks) + (TDmg * (0.25 * stacks)) + TickDamage()
-			local hp = GetCurrentHP(target)		
-			
-			if stackDamage >= hp then			
-				CastTargetSpell(myHero, _E) 
-			end
+			for _,unit in pairs(GetEnemyHeroes()) do			
+				local stacks = GotBuff(unit,"twitchdeadlyvenom")
+				local stackDamage = (stacks * 5) + 10 + (0.2 * stacks) + (TDmg * (0.25 * stacks)) + TickDamage()
+				local hp = GetCurrentHP(unit)
+				if stackDamage >= hp then			
+					CastTargetSpell(myHero, _E) 
+				end
+			end	
 		end
 		if Config.E2 and ValidTarget(target,1200) and not Config.E then
 			local stacks = GotBuff(target,"twitchdeadlyvenom")
