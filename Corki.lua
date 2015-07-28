@@ -33,7 +33,7 @@ OnLoop(function(myHero)
 				CastSkillShot(_R,RPred.PredPos.x,RPred.PredPos.y,RPred.PredPos.z)					
 			end
 			--[[
-			-- This is should work, but there is a bug in the API so it is temp disabled.
+			-- This should work, but there is a bug in the API so it is temp disabled.
 			
 			local missile = GotBuff(myHero,"corkimissilebarragecounterbig")				
 			
