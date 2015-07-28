@@ -1,6 +1,6 @@
 require('Inspired')
 
-Config = scriptConfig("Corki", "Corki.lua")
+Config = scriptConfig("Corki by Outbreak", "Corki.lua")
 Config.addParam("Q", "Use Q", SCRIPT_PARAM_ONOFF, true)
 Config.addParam("E", "Use E", SCRIPT_PARAM_ONOFF, true)
 Config.addParam("R", "Use R", SCRIPT_PARAM_ONOFF, true)
