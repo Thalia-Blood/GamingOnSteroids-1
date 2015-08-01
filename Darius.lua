@@ -10,25 +10,30 @@ Config.addParam("Combo", "Combo", SCRIPT_PARAM_KEYDOWN, string.byte(" "))
 
 
 OnLoop(function(myHero)
-	
-	
 	if Config.Combo then
 		local target = GetTarget(600)
 		
 		if Config.R and ValidTarget(target, 460)then
-			local Truedmg = (160 + (90 * (GetCastLevel(myHero,_R) - 1)) + (GetBonusDmg(myHero) *  0.75) )
-			local stacks = 0
-			if not GetBuffCount(target,"dariushemo") == nil  then
-				stacks = GetBuffCount(target,"dariushemo")
-			end
-
-			local Sdmg = (32 + (18 * stacks ) + (GetBonusDmg(myHero) *  0.15) ) 			
-			local dmg = CalcDamage(myHero, target, Sdmg)
-			local hp = GetCurrentHP(target)
 			
-			if (Truedmg + dmg) > hp then				
-				CastTargetSpell(target, _R)
-			end			
+			local Truedmg = (160 + (90 * (GetCastLevel(myHero,_R) - 1)) + (GetBonusDmg(myHero) *  0.75) )
+			
+			local stacks = 0
+			
+			for _,unit in pairs(GetEnemyHeroes()) do
+				if ValidTarget(unit, 460) then
+					if not GetBuffCount(unit,"dariushemo") == nil  then
+						stacks = GetBuffCount(unit,"dariushemo")
+					end
+					
+					local Sdmg = (32 + (18 * stacks ) + (GetBonusDmg(myHero) *  0.15) ) 			
+					local dmg = CalcDamage(myHero, unit, Sdmg)
+					local hp = GetCurrentHP(unit)
+			
+					if (Truedmg + dmg) > hp then				
+						CastTargetSpell(unit, _R)
+					end	
+				end
+			end	
 		end
 		if Config.E and ValidTarget(target, 600)then
 			local EPred = GetPredictionForPlayer(GetOrigin(myHero),target,GetMoveSpeed(target),math.huge,300,550,80,false,true)
