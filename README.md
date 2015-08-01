@@ -2,4 +2,4 @@
 
 
 
-## This is scripts made for GamingOnSteroids.
+## Scripts made for GamingOnSteroids.
