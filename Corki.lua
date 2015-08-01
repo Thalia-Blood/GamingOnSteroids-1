@@ -27,30 +27,20 @@ OnLoop(function(myHero)
 		end
 		if Config.R and ValidTarget(target, 1500)then
 			local RPred = nil
+			local missile = GotBuff(myHero,"mbcheck2")		
 			
-			RPred = GetPredictionForPlayer(GetOrigin(myHero),target,GetMoveSpeed(target),2000,200,1500,40,true,true)
-			if CanUseSpell(myHero,_R) == READY and RPred.HitChance == 1 then
-				CastSkillShot(_R,RPred.PredPos.x,RPred.PredPos.y,RPred.PredPos.z)					
-			end
-			--[[
-			-- This should work, but there is a bug in the API so it is temp disabled.
-			
-			local missile = GotBuff(myHero,"corkimissilebarragecounterbig")				
-			
-			
-			if missile then
+			if missile == 1 then
 				RPred = GetPredictionForPlayer(GetOrigin(myHero),target,GetMoveSpeed(target),2000,200,1500,40,true,true)
-				if CanUseSpell(myHero,_R) == READY and RPred.HitChance == 1 then
-					CastSkillShot(_R,RPred.PredPos.x,RPred.PredPos.y,RPred.PredPos.z)
-				end
-			else
-				RPred = GetPredictionForPlayer(GetOrigin(myHero),target,GetMoveSpeed(target),2000,200,1300,40,true,true)
 				if CanUseSpell(myHero,_R) == READY and RPred.HitChance == 1 then
 					CastSkillShot(_R,RPred.PredPos.x,RPred.PredPos.y,RPred.PredPos.z)					
 				end
-			end--]]		
+			else
+				RPred = GetPredictionForPlayer(GetOrigin(myHero),target,GetMoveSpeed(target),2000,200,1300,40,true,true)
+				if CanUseSpell(myHero,_R) == READY and RPred.HitChance == 1 then					
+					CastSkillShot(_R,RPred.PredPos.x,RPred.PredPos.y,RPred.PredPos.z)					
+				end
+			end	
 			
 		end
-	end
-	
+	end	
 end)
