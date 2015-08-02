@@ -22,7 +22,8 @@ OnLoop(function(myHero)
 		end
 		if Config.E and ValidTarget(target, 600)then
 			if CanUseSpell(myHero,_E) == READY then
-				CastTargetSpell(myHero, _E)
+				local mymouse = GetMousePos()
+				CastSkillShot(_E,mymouse.x,mymouse.y,mymouse.z)				
 			end
 		end
 		if Config.R and ValidTarget(target, 1500)then
@@ -42,5 +43,6 @@ OnLoop(function(myHero)
 			end	
 			
 		end
-	end	
+	end
+	
 end)
