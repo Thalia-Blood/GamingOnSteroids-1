@@ -46,62 +46,64 @@ end
 
 
 OnLoop(function(myHero)
-	if champ == "LeeSin" or champ == "Jax" or champ == "Katarina" then
-		if Config.Z then
-			if champ == "LeeSin" and CanUseSpell(myHero,_W) == READY then
-				if wardtimer < GetTickCount() then
-					if CastWard() then
-						wardtimer = GetTickCount() + 2000
-					end			
-				end
+	
+	if Config.Z then
+		if champ == "LeeSin" and CanUseSpell(myHero,_W) == READY then
+			if wardtimer < GetTickCount() then
+				if CastWard() then
+					wardtimer = GetTickCount() + 2000
+				end			
 			end
-			if champ == "Jax" and CanUseSpell(myHero,_Q) == READY then
-				if wardtimer < GetTickCount() then
-					if CastWard() then
-						wardtimer = GetTickCount() + 2000
-					end			
-				end
+		end
+		if champ == "Jax" and CanUseSpell(myHero,_Q) == READY then
+			if wardtimer < GetTickCount() then
+				if CastWard() then
+					wardtimer = GetTickCount() + 2000
+				end			
 			end
-			if champ == "Katarina" and CanUseSpell(myHero,_E) == READY then
-				if wardtimer < GetTickCount() then
-					if CastWard() then
-						wardtimer = GetTickCount() + 2000
-					end			
-				end
+		end
+		if champ == "Katarina" and CanUseSpell(myHero,_E) == READY then
+			if wardtimer < GetTickCount() then
+				if CastWard() then
+					wardtimer = GetTickCount() + 2000
+				end			
 			end
 		end
 	end
+	
 end)
 
 -- Ward jumping...
 
 OnObjectLoop(function(Object,myHero)		
 		
+	if not Config.Z then
+		return 
+	end
+	
 	local origin = GetOrigin(Object)
 	local mousepoz = GetMousePos()
 	if (GetDistanceX(origin,mousepoz) < 200) then		
 		if GetObjectName(Object):lower()  == "yellowtrinket" or GetObjectName(Object):lower()  == "sightward" or GetObjectName(Object):lower()  == "visionward" then			
-			wardtimer = GetTickCount() + 1000
-			if Config.Z then	
-				if champ == "LeeSin" then
-					if CanUseSpell(myHero,_W) == READY then
-						wardtimer = GetTickCount() + 3000
-						CastTargetSpell(Object,_W)
-					end	
+			wardtimer = GetTickCount() + 1000				
+			if champ == "LeeSin" then
+				if CanUseSpell(myHero,_W) == READY then
+					wardtimer = GetTickCount() + 3000
+					CastTargetSpell(Object,_W)
+				end	
 				end
-				if champ == "Jax" then
-					if CanUseSpell(myHero,_Q) == READY then
-						wardtimer = GetTickCount() + 3000
-						CastTargetSpell(Object,_Q)
-					end
+			if champ == "Jax" then
+				if CanUseSpell(myHero,_Q) == READY then
+					wardtimer = GetTickCount() + 3000
+					CastTargetSpell(Object,_Q)
 				end
-				if champ == "Katarina" then					
-					if CanUseSpell(myHero,_E) == READY then
-						wardtimer = GetTickCount() + 3000
-						CastTargetSpell(Object,_E)
-					end	
-				end
-			end		
+			end
+			if champ == "Katarina" then					
+				if CanUseSpell(myHero,_E) == READY then
+					wardtimer = GetTickCount() + 3000
+					CastTargetSpell(Object,_E)
+				end	
+			end	
 		end			
 	end
 end)
