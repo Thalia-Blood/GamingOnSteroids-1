@@ -27,11 +27,11 @@ end
 
 
 function CastWard()
-	local wardid = {3340,3361,3154,2045,2049,2050,2044,2043}  
-    for i = 0,8 do
-        local slot = GetItemSlot(GetMyHero(),wardid[i])		
+	local wardid = {3340,3361,3154,2045,2049,2050,2044,2043}  	
+    for i = 1,8 do
+        local slot = GetItemSlot(GetMyHero(),wardid[i]) or 0	
 		
-        if slot and CanUseSpell(GetMyHero(),slot) == READY then
+        if slot > 0 and CanUseSpell(GetMyHero(),slot) == READY then
 			local mymouse = GetMousePos()
 			local origin = GetOrigin(myHero)
 			
