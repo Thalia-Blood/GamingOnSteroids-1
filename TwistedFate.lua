@@ -118,7 +118,7 @@ function Killable()
 				local HPBARPOS = GetHPBarPos(myHero)
 				if HPBARPOS.x > 0 then
 					if HPBARPOS.y > 0 then				
-						DrawText(string.format("You can kill %s(YellowCard)",GetObjectName(unit)),12,HPBARPOS.x,HPBARPOS.y - 30,0xffffff00)
+						DrawText(string.format("You can kill %s(BlueCard)",GetObjectName(unit)),12,HPBARPOS.x,HPBARPOS.y - 30,0xffffff00)
 					end
 				end					
 				tickwarn = GetTickCount() + 5000
