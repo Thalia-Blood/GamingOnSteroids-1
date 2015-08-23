@@ -11,11 +11,11 @@ Config.addParam("Combo", "Combo", SCRIPT_PARAM_KEYDOWN, string.byte(" "))
 
 OnLoop(function(myHero)
 	if Config.Combo then
-		local target = GetTarget(600)
+		local target = GetTarget(600,DAMAGE_PHYSICAL)
 		
-		if Config.R and ValidTarget(target, 460)then
+		if Config.R and ValidTarget(target, 460) and CanUseSpell(myHero,_R) == READY then
 			
-			local Truedmg = (160 + (90 * (GetCastLevel(myHero,_R) - 1)) + (GetBonusDmg(myHero) *  0.75) )
+			local Truedmg = (100 + (100 * GetCastLevel(myHero,_R)) + (GetBonusDmg(myHero) *  0.75) )
 			
 			local stacks = 0
 			
@@ -25,7 +25,7 @@ OnLoop(function(myHero)
 						stacks = GetBuffCount(unit,"dariushemo")
 					end
 					
-					local Sdmg = (32 + (18 * stacks ) + (GetBonusDmg(myHero) *  0.15) ) 			
+					local Sdmg = (20 + (20 * stacks ) + (GetBonusDmg(myHero) *  0.15) ) 			
 					local dmg = CalcDamage(myHero, unit, Sdmg)
 					local hp = GetCurrentHP(unit)
 			
